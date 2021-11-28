@@ -1,0 +1,99 @@
+<Login>:
+    serverip: serverip
+    username: username
+    port: port
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'BG.jpg'
+
+    FloatLayout:
+        cols:2
+        rows:1
+        FloatLayout:
+            Label:
+                text: "Server IP:"
+                size_hint: 0.2, .05
+                pos_hint: {"x": 0.1, "top": 0.85}
+
+            TextInput:
+                text: "Server IP"
+                id: serverip
+                size_hint: 0.5, .05
+                pos_hint: {"x": 0.4, "top": 0.85}
+                multiline: False
+                write_tab: True
+
+            Label:
+                text: "Port:"
+                size_hint: 0.2, .05
+                pos_hint: {"x": 0.1, "top": 0.6}
+
+            TextInput:
+                text: "Port"
+                id: port
+                size_hint: 0.5, .05
+                pos_hint: {"x": 0.4, "top": 0.6}
+                multiline: False
+                write_tab: True
+
+            Label:
+                text: "Username:"
+                size_hint: 0.2, .05
+                pos_hint: {"x": 0.1, "top": 0.35}
+
+            TextInput:
+                text: "username"
+                id: username
+                size_hint: 0.5, .05
+                pos_hint: {"x": 0.4, "top": 0.35}
+                multiline: False
+
+
+        Button:
+            text: "Submit"
+            size_hint: 0.8, 0.15
+            pos_hint: {"x": 0.1}
+            on_press: root.join()
+
+<ErrorPage>:
+    errorline: errorline
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'whatsapp.jpg'
+    GridLayout:
+        cols:1
+        Label:
+            id: errorline
+            text: root.txtvar
+            halign: "center"
+            valign: "middle"
+            font_size: 35
+            text_size: (self.width*0.9, None)
+
+<Popup>:
+    pop: pop
+    id: pop
+    title: "Error Occurred"
+    size_hint : 0.5,0.5
+    auto_dismiss: False
+    GridLayout:
+        cols: 1
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            Label:
+                text:"Could not connect to the server. Please check the server (xxx.xxx.xxx.xxx) and port are valid and Username consists of Letters, Numbers and underscores (max length 50)"
+                text_size: self.width, None
+                halign: 'center'
+
+                size_hint: 1, None
+                height: self.texture_size[1]
+        Button:
+            text:"OK"
+            size_hint: 0.4,0.2
+            on_press: pop.dismiss()
